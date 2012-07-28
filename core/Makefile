@@ -1086,7 +1086,7 @@ $(recovery_ramdisk): $(MINIGZIP) \
 
 ifndef BOARD_CUSTOM_BOOTIMG_MK
 
-(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(recovery_ramdisk) $(recovery_kernel) \
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(recovery_ramdisk) $(recovery_kernel) \
 		$(RECOVERYIMAGE_EXTRA_DEPS)
 	@echo "----- Making recovery image ------"
 	$(call build-recoveryimage-target, $@)
