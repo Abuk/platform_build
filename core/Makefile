@@ -540,7 +540,7 @@ INTERNAL_MKBOOTIMG_VERSION_ARGS := \
     --os_version $(PLATFORM_VERSION) \
     --os_patch_level $(PLATFORM_SECURITY_PATCH)
 
-INSTALLED_DTIMAGE_TARGET := $(PRODUCT_OUT)/dt.img
+INSTALLED_DTIMAGE_TARGET := $(PRODUCT_OUT)/dt.img 
 
 ifeq ($(strip $(BOARD_KERNEL_SEPARATED_DT)),true)
   INTERNAL_BOOTIMAGE_ARGS += --dt $(INSTALLED_DTIMAGE_TARGET)
@@ -1086,7 +1086,7 @@ $(recovery_ramdisk): $(MINIGZIP) \
 
 ifndef BOARD_CUSTOM_BOOTIMG_MK
 
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(recovery_ramdisk) $(recovery_kernel) \
+(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(recovery_ramdisk) $(recovery_kernel) \
 		$(RECOVERYIMAGE_EXTRA_DEPS)
 	@echo "----- Making recovery image ------"
 	$(call build-recoveryimage-target, $@)
