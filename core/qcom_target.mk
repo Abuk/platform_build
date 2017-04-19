@@ -1,5 +1,8 @@
 # Target-specific configuration
 
+# Bring in Qualcomm helper macros
+include build/core/qcom_utils.mk
+
 # Populate the qcom hardware variants in the project pathmap.
 define ril-set-path-variant
 $(call project-set-path-variant,ril,TARGET_RIL_VARIANT,hardware/$(1))
@@ -50,6 +53,12 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     ifneq ($(filter msm8992 msm8994,$(TARGET_BOARD_PLATFORM)),)
         qcom_flags += -DHAS_EXTRA_FLAC_METADATA
     endif
+
+    # Enable color metadata for 8xx UM targets
+    ifneq ($(filter msm8996 msm8998,$(TARGET_BOARD_PLATFORM)),)
+        TARGET_USES_COLOR_METADATA := true
+    endif
+
 
     TARGET_GLOBAL_CFLAGS += $(qcom_flags)
     TARGET_GLOBAL_CPPFLAGS += $(qcom_flags)
